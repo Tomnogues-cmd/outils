@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Remplace TON-DOMAINE par ton URL (ex. tom.github.io/outils) avant de mettre en ligne -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://tomnogues-cmd.github.io/outils/</loc><priority>1.0</priority></url>
-  <url><loc>https://tomnogues-cmd.github.io/outils/pseudos/</loc><priority>0.9</priority></url>
-  <url><loc>https://tomnogues-cmd.github.io/outils/robux/</loc><priority>0.9</priority></url>
-  <url><loc>https://tomnogues-cmd.github.io/outils/roue/</loc><priority>0.9</priority></url>
-  <url><loc>https://tomnogues-cmd.github.io/outils/minuteur/</loc><priority>0.9</priority></url>
-  <url><loc>https://tomnogues-cmd.github.io/outils/mot-de-passe/</loc><priority>0.9</priority></url>
-  <url><loc>https://tomnogues-cmd.github.io/outils/pourcentage/</loc><priority>0.9</priority></url>
-  <url><loc>https://tomnogues-cmd.github.io/outils/compteur-mots/</loc><priority>0.9</priority></url>
-  <url><loc>https://tomnogues-cmd.github.io/outils/bio/</loc><priority>0.9</priority></url>
-  <url><loc>https://tomnogues-cmd.github.io/outils/noms/</loc><priority>0.9</priority></url>
-  <url><loc>https://tomnogues-cmd.github.io/outils/pile-ou-face/</loc><priority>0.9</priority></url>
+  <url><loc>https://tomnogues-cmd.github.io/outils/</loc><lastmod>2026-06-28</lastmod><priority>1.0</priority></url>
+  <url><loc>https://tomnogues-cmd.github.io/outils/pseudos/</loc><lastmod>2026-06-28</lastmod><priority>0.9</priority></url>
+  <url><loc>https://tomnogues-cmd.github.io/outils/robux/</loc><lastmod>2026-06-28</lastmod><priority>0.9</priority></url>
+  <url><loc>https://tomnogues-cmd.github.io/outils/roue/</loc><lastmod>2026-06-28</lastmod><priority>0.9</priority></url>
+  <url><loc>https://tomnogues-cmd.github.io/outils/minuteur/</loc><lastmod>2026-06-28</lastmod><priority>0.9</priority></url>
+  <url><loc>https://tomnogues-cmd.github.io/outils/mot-de-passe/</loc><lastmod>2026-06-28</lastmod><priority>0.9</priority></url>
+  <url><loc>https://tomnogues-cmd.github.io/outils/pourcentage/</loc><lastmod>2026-06-28</lastmod><priority>0.9</priority></url>
+  <url><loc>https://tomnogues-cmd.github.io/outils/compteur-mots/</loc><lastmod>2026-06-28</lastmod><priority>0.9</priority></url>
+  <url><loc>https://tomnogues-cmd.github.io/outils/bio/</loc><lastmod>2026-06-28</lastmod><priority>0.9</priority></url>
+  <url><loc>https://tomnogues-cmd.github.io/outils/noms/</loc><lastmod>2026-06-28</lastmod><priority>0.9</priority></url>
+  <url><loc>https://tomnogues-cmd.github.io/outils/pile-ou-face/</loc><lastmod>2026-06-28</lastmod><priority>0.9</priority></url>
 </urlset>
