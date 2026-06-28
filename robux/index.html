@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculateur Robux en Euros 💰 Combien valent tes Robux ?</title>
+<meta name="description" content="Convertis tes Robux en euros (et inversement) en 1 clic. Prix d'achat et taux de revente DevEx, table des packs Robux. Gratuit, sans inscription.">
+<meta name="theme-color" content="#0b0b14">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💰</text></svg>">
+<!-- PUB AdSense : <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXX" crossorigin="anonymous"></script> -->
+<style>
+  :root{--bg:#0b0b14;--card:#181826;--card2:#1f1f30;--txt:#eef0ff;--muted:#9aa0bd;--line:#2a2a40;--accent:#f59e0b;--accent2:#34d399;--good:#34d399}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,Roboto,sans-serif;color:var(--txt);min-height:100vh;line-height:1.5;padding-bottom:50px;
+       background:radial-gradient(1200px 600px at 20% -10%,#3a2a08 0,transparent 60%),radial-gradient(900px 500px at 110% 10%,#0d2c1f 0,transparent 55%),var(--bg)}
+  .wrap{max-width:680px;margin:0 auto;padding:0 16px}
+  .back{display:inline-block;margin:18px 0 0;color:var(--muted);text-decoration:none;font-size:14px}.back:hover{color:var(--txt)}
+  header{text-align:center;padding:24px 16px}
+  h1{font-size:clamp(24px,5.5vw,38px);font-weight:800;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  header p{color:var(--muted);margin-top:10px;font-size:15px}
+  .ad{margin:22px auto;min-height:90px;border:1px dashed var(--line);border-radius:12px;display:flex;align-items:center;justify-content:center;color:#454a66;font-size:12px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:16px}
+  .field{margin-bottom:16px}
+  label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px;font-weight:600}
+  .conv{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:700}
+  .conv .unit{color:var(--muted);font-size:15px;font-weight:600;min-width:54px}
+  input[type=number],select{width:100%;font-size:22px;padding:14px 16px;border-radius:12px;background:var(--card2);border:2px solid var(--line);color:var(--txt);outline:none;transition:.2s}
+  input:focus,select:focus{border-color:var(--accent)}
+  .swap{display:block;margin:6px auto;background:var(--card2);border:1px solid var(--line);color:var(--txt);width:42px;height:42px;border-radius:50%;cursor:pointer;font-size:18px;transition:.15s}
+  .swap:hover{border-color:var(--accent);transform:rotate(180deg)}
+  .opts{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+  .opts label{display:flex;align-items:center;gap:6px;font-size:14px;color:var(--txt);cursor:pointer;margin:0}
+  .rate{font-size:13px;color:var(--muted);margin-top:10px}
+  table{width:100%;border-collapse:collapse;margin-top:4px}
+  th,td{padding:11px 8px;text-align:left;border-bottom:1px solid var(--line);font-size:15px}
+  th{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.4px}
+  td:last-child,th:last-child{text-align:right;font-weight:700}
+  .note{font-size:12.5px;color:#6a708d;margin-top:12px;line-height:1.5}
+  .seo{margin-top:36px;color:var(--muted);font-size:14.5px}.seo h2{color:var(--txt);font-size:18px;margin:22px 0 8px}
+  .tools{margin-top:44px}.tools h2{font-size:15px;color:var(--muted);text-align:center;margin-bottom:14px;font-weight:600}
+  .tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+  .tgrid a{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px;color:var(--txt);text-decoration:none;font-weight:600;font-size:13.5px;transition:.15s}
+  .tgrid a:hover{border-color:var(--accent);background:var(--card2)}
+  footer{text-align:center;color:#4a4f6b;font-size:13px;margin-top:30px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← Tous les outils</a>
+  <header>
+    <h1>💰 Robux en Euros</h1>
+    <p>Combien valent tes Robux&nbsp;? Convertis dans les deux sens.</p>
+  </header>
+
+  <div class="card">
+    <div class="field">
+      <label id="lblTop">Robux</label>
+      <div class="conv"><input id="robux" type="number" min="0" value="400"><span class="unit" id="unitTop">R$</span></div>
+    </div>
+    <button class="swap" id="swap" title="Inverser">⇅</button>
+    <div class="field">
+      <label id="lblBot">Euros</label>
+      <div class="conv"><input id="euro" type="number" min="0" step="0.01"><span class="unit" id="unitBot">€</span></div>
+    </div>
+    <div class="opts">
+      <label><input type="radio" name="mode" value="buy" checked> Prix d'achat</label>
+      <label><input type="radio" name="mode" value="devex"> Revente (DevEx)</label>
+    </div>
+    <p class="rate" id="rateInfo"></p>
+  </div>
+
+  <div class="ad">Emplacement pub (bannière)</div>
+
+  <div class="card">
+    <h2 style="font-size:16px;margin-bottom:8px">📦 Packs Robux courants (prix d'achat)</h2>
+    <table>
+      <tr><th>Robux</th><th>Prix ≈</th></tr>
+      <tr><td>80 R$</td><td>0,99 €</td></tr>
+      <tr><td>400 R$</td><td>4,99 €</td></tr>
+      <tr><td>800 R$</td><td>9,99 €</td></tr>
+      <tr><td>1 700 R$</td><td>19,99 €</td></tr>
+      <tr><td>4 500 R$</td><td>49,99 €</td></tr>
+      <tr><td>10 000 R$</td><td>99,99 €</td></tr>
+    </table>
+    <p class="note">⚠️ Les prix Roblox varient selon la plateforme (web, appli mobile, abonnement Premium) et la région. Ce sont des estimations pour t'aider à t'y retrouver, pas un prix officiel.</p>
+  </div>
+
+  <section class="seo">
+    <h2>Comment convertir des Robux en euros&nbsp;?</h2>
+    <p>Le <strong>prix d'achat</strong> correspond à ce que ça coûte d'acheter des Robux sur Roblox (environ 100 Robux pour
+    1,25&nbsp;€). Le mode <strong>DevEx</strong> correspond au taux auquel les développeurs peuvent <em>retirer</em> leurs
+    Robux en argent réel — beaucoup plus bas. Choisis le bon mode selon ta situation puis tape ton montant.</p>
+  </section>
+
+  <nav class="tools">
+    <h2>⚡ Plus d'outils gratuits</h2>
+    <div class="tgrid">
+      <a href="../pseudos/">🔤 Pseudos stylés</a><a href="../roue/">🎡 Roue tirage au sort</a>
+      <a href="../minuteur/">⏱️ Minuteur</a><a href="../mot-de-passe/">🔒 Mot de passe</a>
+      <a href="../pourcentage/">🧮 Pourcentage</a><a href="../compteur-mots/">📝 Compteur de mots</a>
+      <a href="../bio/">✨ Bio stylée</a><a href="../noms/">🎮 Générateur de noms</a>
+      <a href="../pile-ou-face/">🪙 Pile ou face &amp; dé</a>
+    </div>
+  </nav>
+  <footer>Fait avec ⚡ — 100% gratuit, aucune inscription.</footer>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const RATES={buy:0.0125, devex:0.0032}; // € par Robux (approx)
+const RATE_TXT={buy:"≈ 0,0125 € par Robux (≈ 400 R$ = 5 €)", devex:"≈ 0,0032 € par Robux (taux de revente DevEx, approximatif)"};
+let dir="r2e"; // robux -> euro
+const robux=$("robux"),euro=$("euro");
+function rate(){return RATES[document.querySelector('input[name=mode]:checked').value];}
+function fmtE(n){return (Math.round(n*100)/100).toLocaleString('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function fmtR(n){return Math.round(n).toLocaleString('fr-FR');}
+function fromRobux(){const v=parseFloat(robux.value)||0;euro.value=fmtNumInput(v*rate());}
+function fromEuro(){const v=parseFloat(euro.value)||0;robux.value=Math.round(v/rate());}
+function fmtNumInput(n){return Math.round(n*100)/100;}
+function recalc(){dir==="r2e"?fromRobux():fromEuro();$("rateInfo").textContent="Taux utilisé : "+RATE_TXT[document.querySelector('input[name=mode]:checked').value];}
+robux.addEventListener("input",()=>{dir="r2e";fromRobux();});
+euro.addEventListener("input",()=>{dir="e2r";fromEuro();});
+document.querySelectorAll('input[name=mode]').forEach(r=>r.addEventListener("change",recalc));
+$("swap").addEventListener("click",()=>{
+  // inverser l'ordre visuel des deux champs
+  const top=$("lblTop").textContent;
+  // simple : on échange les valeurs de focus -> on bascule juste le sens d'édition
+  if(dir==="r2e"){euro.focus();dir="e2r";}else{robux.focus();dir="r2e";}
+});
+recalc();
+</script>
+</body>
+</html>

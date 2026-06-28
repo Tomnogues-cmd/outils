@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pile ou Face &amp; Lancer de Dé 🪙 En ligne, gratuit</title>
+<meta name="description" content="Joue à pile ou face en ligne ou lance un ou plusieurs dés (D6, D20…). Animation, résultat aléatoire instantané. Gratuit, sans inscription.">
+<meta name="theme-color" content="#0b0b14">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪙</text></svg>">
+<!-- PUB AdSense : <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXX" crossorigin="anonymous"></script> -->
+<style>
+  :root{--bg:#0b0b14;--card:#181826;--card2:#1f1f30;--txt:#eef0ff;--muted:#9aa0bd;--line:#2a2a40;--accent:#fbbf24;--accent2:#f97316}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,Roboto,sans-serif;color:var(--txt);min-height:100vh;line-height:1.5;padding-bottom:50px;
+       background:radial-gradient(1200px 600px at 20% -10%,#3a2c08 0,transparent 60%),radial-gradient(900px 500px at 110% 10%,#3a1c08 0,transparent 55%),var(--bg)}
+  .wrap{max-width:600px;margin:0 auto;padding:0 16px}
+  .back{display:inline-block;margin:18px 0 0;color:var(--muted);text-decoration:none;font-size:14px}.back:hover{color:var(--txt)}
+  header{text-align:center;padding:24px 16px}
+  h1{font-size:clamp(24px,5.5vw,38px);font-weight:800;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  header p{color:var(--muted);margin-top:10px;font-size:15px}
+  .ad{margin:22px auto;min-height:90px;border:1px dashed var(--line);border-radius:12px;display:flex;align-items:center;justify-content:center;color:#454a66;font-size:12px}
+  .tabs{display:flex;gap:8px;justify-content:center;margin-bottom:20px}
+  .tab{padding:10px 22px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--muted);cursor:pointer;font-size:15px;font-weight:700;transition:.15s}
+  .tab:hover{color:var(--txt);border-color:var(--accent)}.tab.active{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#3a2400;border-color:transparent}
+  .panel{display:none;text-align:center}.panel.active{display:block}
+  .coin{width:150px;height:150px;border-radius:50%;margin:10px auto 4px;display:flex;align-items:center;justify-content:center;font-size:54px;font-weight:800;color:#3a2400;
+        background:radial-gradient(circle at 35% 30%,#fde68a,#f59e0b);box-shadow:0 10px 30px rgba(245,158,11,.35),inset 0 -6px 12px rgba(0,0,0,.2)}
+  .coin.flip{animation:flip 1s ease-in-out}
+  @keyframes flip{0%{transform:rotateY(0)}100%{transform:rotateY(1980deg)}}
+  .dice-wrap{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin:10px 0}
+  .die{width:84px;height:84px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:800;
+       background:var(--card);border:2px solid var(--line);color:var(--txt)}
+  .die.roll{animation:shake .5s ease}
+  @keyframes shake{0%,100%{transform:translateY(0) rotate(0)}25%{transform:translateY(-10px) rotate(-12deg)}75%{transform:translateY(-6px) rotate(12deg)}}
+  .result{font-size:30px;font-weight:800;margin:12px 0 4px;min-height:38px;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sum{color:var(--muted);font-size:15px;min-height:20px}
+  .controls{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:16px 0}
+  select{font-size:15px;padding:11px 14px;border-radius:11px;background:var(--card);border:2px solid var(--line);color:var(--txt);outline:none}
+  select:focus{border-color:var(--accent)}
+  .go{padding:15px 34px;border:none;cursor:pointer;border-radius:14px;font-size:17px;font-weight:800;color:#3a2400;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:.1s}
+  .go:hover{filter:brightness(1.08)}.go:active{transform:scale(.98)}.go:disabled{opacity:.5;cursor:default}
+  .seo{margin-top:36px;color:var(--muted);font-size:14.5px;text-align:left}.seo h2{color:var(--txt);font-size:18px;margin:22px 0 8px}
+  .tools{margin-top:44px}.tools h2{font-size:15px;color:var(--muted);text-align:center;margin-bottom:14px;font-weight:600}
+  .tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+  .tgrid a{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px;color:var(--txt);text-decoration:none;font-weight:600;font-size:13.5px;transition:.15s}
+  .tgrid a:hover{border-color:var(--accent);background:var(--card2)}
+  footer{text-align:center;color:#4a4f6b;font-size:13px;margin-top:30px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← Tous les outils</a>
+  <header>
+    <h1>🪙 Pile ou face &amp; dé</h1>
+    <p>Laisse le hasard décider.</p>
+  </header>
+
+  <div class="tabs">
+    <div class="tab active" data-p="coin">🪙 Pile ou face</div>
+    <div class="tab" data-p="dice">🎲 Dé</div>
+  </div>
+
+  <div class="panel active" id="coin">
+    <div class="coin" id="coinEl">?</div>
+    <div class="result" id="coinRes"></div>
+    <div class="controls"><button class="go" id="flipBtn">Lancer la pièce</button></div>
+  </div>
+
+  <div class="panel" id="dice">
+    <div class="dice-wrap" id="diceWrap"><div class="die">?</div></div>
+    <div class="result" id="diceRes"></div>
+    <div class="sum" id="diceSum"></div>
+    <div class="controls">
+      <select id="count"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select>
+      <select id="sides">
+        <option value="6">Dé à 6 faces (D6)</option><option value="4">D4</option><option value="8">D8</option>
+        <option value="10">D10</option><option value="12">D12</option><option value="20">D20</option><option value="100">D100</option>
+      </select>
+      <button class="go" id="rollBtn">Lancer</button>
+    </div>
+  </div>
+
+  <div class="ad">Emplacement pub (bannière)</div>
+
+  <section class="seo">
+    <h2>Pile ou face et lancer de dé en ligne</h2>
+    <p>Pas de pièce ni de dé sous la main&nbsp;? Lance une pièce virtuelle pour trancher une décision à 50/50, ou jette un ou
+    plusieurs dés (du D4 au D100) pour tes jeux de société et jeux de rôle. Le tirage est aléatoire et instantané, directement
+    dans ton navigateur.</p>
+  </section>
+
+  <nav class="tools">
+    <h2>⚡ Plus d'outils gratuits</h2>
+    <div class="tgrid">
+      <a href="../pseudos/">🔤 Pseudos stylés</a><a href="../robux/">💰 Robux en €</a>
+      <a href="../roue/">🎡 Roue tirage au sort</a><a href="../minuteur/">⏱️ Minuteur</a>
+      <a href="../mot-de-passe/">🔒 Mot de passe</a><a href="../pourcentage/">🧮 Pourcentage</a>
+      <a href="../compteur-mots/">📝 Compteur de mots</a><a href="../bio/">✨ Bio stylée</a>
+      <a href="../noms/">🎮 Générateur de noms</a>
+    </div>
+  </nav>
+  <footer>Fait avec ⚡ — 100% gratuit, aucune inscription.</footer>
+</div>
+
+<script>
+const $=id=>document.getElementById(id),rnd=n=>Math.floor(Math.random()*n);
+// tabs
+document.querySelectorAll(".tab").forEach(t=>t.addEventListener("click",()=>{
+  document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+  document.querySelectorAll(".panel").forEach(x=>x.classList.remove("active"));
+  t.classList.add("active");$(t.dataset.p).classList.add("active");
+}));
+// pièce
+let flipping=false;
+$("flipBtn").addEventListener("click",()=>{
+  if(flipping)return;flipping=true;
+  const el=$("coinEl"),btn=$("flipBtn");btn.disabled=true;$("coinRes").textContent="";
+  el.classList.remove("flip");void el.offsetWidth;el.classList.add("flip");
+  const res=rnd(2)?"Face":"Pile";
+  setTimeout(()=>{el.textContent=res==="Pile"?"P":"F";$("coinRes").textContent=res+" !";flipping=false;btn.disabled=false;},1000);
+});
+// dé
+let rolling=false;
+$("rollBtn").addEventListener("click",()=>{
+  if(rolling)return;rolling=true;
+  const count=+$("count").value,sides=+$("sides").value,btn=$("rollBtn");btn.disabled=true;
+  $("diceRes").textContent="";$("diceSum").textContent="";
+  const wrap=$("diceWrap");wrap.innerHTML="";
+  const dies=[];
+  for(let i=0;i<count;i++){const d=document.createElement("div");d.className="die roll";d.textContent="?";wrap.appendChild(d);dies.push(d);}
+  setTimeout(()=>{
+    const vals=dies.map(d=>{const v=rnd(sides)+1;d.classList.remove("roll");d.textContent=v;
+      d.style.fontSize=(v>99?"22px":v>9?"30px":"34px");return v;});
+    $("diceRes").textContent=vals.join(" · ");
+    if(count>1)$("diceSum").textContent="Total : "+vals.reduce((a,b)=>a+b,0);
+    rolling=false;btn.disabled=false;
+  },520);
+});
+</script>
+</body>
+</html>

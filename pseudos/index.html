@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Générateur de Pseudos Stylés ⚡ Noms gaming Roblox, Fortnite, Discord</title>
+<meta name="description" content="Crée des pseudos stylés en 1 clic : polices fancy, écriture stylée, symboles et décorations pour Roblox, Fortnite, Discord, Free Fire. Copie-colle instantané, gratuit.">
+<meta name="theme-color" content="#0b0b14">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+<!-- PUB AdSense : <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXX" crossorigin="anonymous"></script> -->
+<style>
+  :root{--bg:#0b0b14;--card:#181826;--card2:#1f1f30;--txt:#eef0ff;--muted:#9aa0bd;--line:#2a2a40;--accent:#8b5cf6;--accent2:#22d3ee;--good:#34d399}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,Roboto,sans-serif;color:var(--txt);min-height:100vh;line-height:1.5;padding-bottom:50px;
+       background:radial-gradient(1200px 600px at 20% -10%,#1c1740 0,transparent 60%),radial-gradient(900px 500px at 110% 10%,#0d2c33 0,transparent 55%),var(--bg)}
+  .wrap{max-width:760px;margin:0 auto;padding:0 16px}
+  .back{display:inline-block;margin:18px 0 0;color:var(--muted);text-decoration:none;font-size:14px}.back:hover{color:var(--txt)}
+  header{text-align:center;padding:24px 16px}
+  h1{font-size:clamp(26px,6vw,40px);font-weight:800;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  header p{color:var(--muted);margin-top:10px;font-size:15px}
+  #input{width:100%;font-size:20px;padding:18px 20px;border-radius:16px;background:var(--card);border:2px solid var(--line);color:var(--txt);outline:none;transition:.2s}
+  #input:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(139,92,246,.18)}
+  #input::placeholder{color:#5a607e}
+  .ad{margin:22px auto;min-height:90px;border:1px dashed var(--line);border-radius:12px;display:flex;align-items:center;justify-content:center;color:#454a66;font-size:12px}
+  .tabs{display:flex;gap:8px;margin:22px 0 16px;flex-wrap:wrap;justify-content:center}
+  .tab{padding:9px 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--muted);cursor:pointer;font-size:14px;font-weight:600;transition:.15s;user-select:none}
+  .tab:hover{color:var(--txt);border-color:var(--accent)}
+  .tab.active{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff;border-color:transparent}
+  .panel{display:none}.panel.active{display:block;animation:fade .25s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .row{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:10px;transition:.15s}
+  .row:hover{border-color:var(--accent);background:var(--card2)}
+  .row .out{flex:1;font-size:19px;word-break:break-word;min-width:0}
+  .row .tag{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;min-width:92px;flex-shrink:0;font-weight:700}
+  .copy{flex-shrink:0;cursor:pointer;border-radius:10px;padding:9px 14px;font-weight:700;font-size:13px;background:var(--card2);color:var(--txt);border:1px solid var(--line);transition:.15s}
+  .copy:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+  .copy.done{background:var(--good);border-color:var(--good);color:#04201a}
+  .gen-btn{display:block;width:100%;margin:4px 0 18px;padding:16px;border:none;cursor:pointer;border-radius:14px;font-size:16px;font-weight:800;color:#fff;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:.1s}
+  .gen-btn:hover{filter:brightness(1.08)}.gen-btn:active{transform:scale(.99)}
+  .seo{margin-top:40px;color:var(--muted);font-size:14.5px}
+  .seo h2{color:var(--txt);font-size:18px;margin:24px 0 8px}
+  .seo details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:8px}
+  .seo summary{cursor:pointer;font-weight:600;color:var(--txt)}.seo details p{margin-top:10px}
+  .tools{margin-top:44px}
+  .tools h2{font-size:15px;color:var(--muted);text-align:center;margin-bottom:14px;font-weight:600}
+  .tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+  .tgrid a{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px;color:var(--txt);text-decoration:none;font-weight:600;font-size:13.5px;transition:.15s}
+  .tgrid a:hover{border-color:var(--accent);background:var(--card2)}
+  footer{text-align:center;color:#4a4f6b;font-size:13px;margin-top:30px}
+  #toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:var(--good);color:#04201a;font-weight:800;padding:12px 22px;border-radius:12px;opacity:0;pointer-events:none;transition:.25s;z-index:50;box-shadow:0 8px 30px rgba(0,0,0,.4)}
+  #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← Tous les outils</a>
+  <header>
+    <h1>⚡ Générateur de Pseudos</h1>
+    <p>Polices stylées, symboles &amp; décos pour Roblox, Fortnite, Discord &amp; co.</p>
+  </header>
+
+  <input id="input" type="text" maxlength="40" placeholder="Tape ton pseudo ici…" autocomplete="off" spellcheck="false">
+  <div class="ad">Emplacement pub (bannière)</div>
+
+  <div class="tabs">
+    <div class="tab active" data-panel="fonts">🔤 Polices stylées</div>
+    <div class="tab" data-panel="deco">✨ Décorations</div>
+    <div class="tab" data-panel="random">🎲 Pseudo aléatoire</div>
+  </div>
+
+  <div class="panel active" id="fonts"></div>
+  <div class="panel" id="deco"></div>
+  <div class="panel" id="random">
+    <button class="gen-btn" id="rollBtn">🎲 Générer des pseudos</button>
+    <div id="randomList"></div>
+  </div>
+
+  <div class="ad">Emplacement pub (milieu)</div>
+
+  <section class="seo">
+    <h2>Le générateur de pseudos stylés gratuit</h2>
+    <p>Tape ton nom en haut : l'outil le transforme en dizaines de <strong>polices spéciales</strong> (gras, gothique, script,
+    cursive, petites majuscules…), avec des <strong>symboles</strong> et des <strong>décorations</strong>. Un clic sur «&nbsp;Copier&nbsp;»
+    et c'est prêt à coller dans Roblox, Fortnite, Free Fire, Discord, TikTok ou Instagram.</p>
+    <h2>Questions fréquentes</h2>
+    <details><summary>Comment avoir un pseudo stylé&nbsp;?</summary><p>Écris ton nom, choisis un style, clique sur «&nbsp;Copier&nbsp;» et colle-le dans ton jeu. Gratuit et illimité.</p></details>
+    <details><summary>Ça marche sur Roblox et Fortnite&nbsp;?</summary><p>Oui pour la plupart des styles. Si un pseudo est refusé, essaie un autre style (les polices «&nbsp;Gras&nbsp;» et «&nbsp;Italique&nbsp;» passent presque partout).</p></details>
+  </section>
+
+  <nav class="tools">
+    <h2>⚡ Plus d'outils gratuits</h2>
+    <div class="tgrid">
+      <a href="../robux/">💰 Robux en €</a><a href="../roue/">🎡 Roue tirage au sort</a>
+      <a href="../minuteur/">⏱️ Minuteur</a><a href="../mot-de-passe/">🔒 Mot de passe</a>
+      <a href="../pourcentage/">🧮 Pourcentage</a><a href="../compteur-mots/">📝 Compteur de mots</a>
+      <a href="../bio/">✨ Bio stylée</a><a href="../noms/">🎮 Générateur de noms</a>
+      <a href="../pile-ou-face/">🪙 Pile ou face &amp; dé</a>
+    </div>
+  </nav>
+  <footer>Fait avec ⚡ — 100% gratuit, aucune inscription.</footer>
+</div>
+<div id="toast">Copié !</div>
+
+<script>
+const A="ABCDEFGHIJKLMNOPQRSTUVWXYZ",a="abcdefghijklmnopqrstuvwxyz",N="0123456789";
+function buildMap(o){const m={};if(o.U!=null)for(let i=0;i<26;i++)m[A[i]]=String.fromCodePoint(o.U+i);
+ if(o.L!=null)for(let i=0;i<26;i++)m[a[i]]=String.fromCodePoint(o.L+i);
+ if(o.D!=null)for(let i=0;i<10;i++)m[N[i]]=String.fromCodePoint(o.D+i);
+ if(o.ov)Object.assign(m,o.ov);return m;}
+const scriptOv={B:'ℬ',E:'ℰ',F:'ℱ',H:'ℋ',I:'ℐ',L:'ℒ',M:'ℳ',R:'ℛ',e:'ℯ',g:'ℊ',o:'ℴ'};
+const frakOv={C:'ℭ',H:'ℌ',I:'ℑ',R:'ℜ',Z:'ℨ'};
+const dsOv={C:'ℂ',H:'ℍ',N:'ℕ',P:'ℙ',Q:'ℚ',R:'ℝ',Z:'ℤ'};
+const circDig={'0':'⓪'};for(let i=1;i<=9;i++)circDig[i]=String.fromCodePoint(0x2460+i-1);
+const SMALL="ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘǫʀꜱᴛᴜᴠᴡxʏᴢ",smallMap={};for(let i=0;i<26;i++){smallMap[a[i]]=SMALL[i];smallMap[A[i]]=SMALL[i];}
+const FLIP="ɐqɔpǝɟƃɥıɾʞlɯuodbɹsʇnʌʍxʎz",flipMap={};for(let i=0;i<26;i++){flipMap[a[i]]=FLIP[i];flipMap[A[i]]=FLIP[i];}
+const STYLES=[
+ ["Gras",buildMap({U:0x1D400,L:0x1D41A,D:0x1D7CE})],["Italique",buildMap({U:0x1D434,L:0x1D44E,ov:{h:'ℎ'}})],
+ ["Gras ital.",buildMap({U:0x1D468,L:0x1D482})],["Script",buildMap({U:0x1D49C,L:0x1D4B6,ov:scriptOv})],
+ ["Script gras",buildMap({U:0x1D4D0,L:0x1D4EA})],["Gothique",buildMap({U:0x1D504,L:0x1D51E,ov:frakOv})],
+ ["Goth. gras",buildMap({U:0x1D56C,L:0x1D586})],["Double",buildMap({U:0x1D538,L:0x1D552,D:0x1D7D8,ov:dsOv})],
+ ["Sans serif",buildMap({U:0x1D5A0,L:0x1D5BA,D:0x1D7E2})],["Sans gras",buildMap({U:0x1D5D4,L:0x1D5EE,D:0x1D7EC})],
+ ["Monospace",buildMap({U:0x1D670,L:0x1D68A,D:0x1D7F6})],["Cercles",buildMap({U:0x24B6,L:0x24D0,ov:circDig})],
+ ["Carrés",buildMap({U:0x1F130,L:0x1F130})],["Carrés noirs",buildMap({U:0x1F170,L:0x1F170})],
+ ["Pleine larg.",buildMap({U:0xFF21,L:0xFF41,D:0xFF10})],["Petites maj.",smallMap],["À l'envers",flipMap,true]];
+function styleText(t,map,flip){let o="";for(const ch of t)o+=(map[ch]!==undefined?map[ch]:ch);if(flip)o=[...o].reverse().join("");return o;}
+const DECOS=[x=>`꧁༺ ${x} ༻꧂`,x=>`▄︻デ ${x} ︻▄`,x=>`✦ ${x} ✦`,x=>`☆*:.｡.${x}.｡.:*☆`,x=>`乡 ${x} 彡`,
+ x=>`⚡ ${x} ⚡`,x=>`「 ${x} 」`,x=>`【 ${x} 】`,x=>`꧁ ${x} ꧂`,x=>`✪ ${x} ✪`,x=>`ღ ${x} ღ`,x=>`☠ ${x} ☠`];
+const PRE=["xX","iTz","Mr","Ze","Le","Dark","ツ","乡",""],
+ ADJ=["Dark","Shadow","Toxic","Pro","Ghost","Cyber","Frozen","Savage","Royal","Mystic","Sombre","Furtif","Rapide","Sniper","Phantom","Crimson","Venom","Storm","Iron","Wild"],
+ NOM=["Wolf","Dragon","Ninja","Reaper","King","Beast","Demon","Phoenix","Viper","Loup","Tigre","Fantome","Assassin","Slayer","Hunter","Knight","Raven","Blaze","Fury","Sniper"],
+ SUF=["","Xx","_FR","YT","TTV","69","420","99","007","2k","x","777"];
+const pick=r=>r[Math.floor(Math.random()*r.length)];
+function randomPseudo(){let b=pick(PRE)+pick(ADJ)+pick(NOM)+pick(SUF);if(Math.random()<.5){const s=pick(STYLES);b=styleText(b,s[1],s[2]);}return b;}
+const $=id=>document.getElementById(id),input=$("input"),fontsEl=$("fonts"),decoEl=$("deco");
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function escA(s){return s.replace(/&/g,"&amp;").replace(/"/g,"&quot;");}
+function rowHTML(tag,t){return `<div class="row"><span class="tag">${tag}</span><span class="out">${esc(t)}</span><button class="copy" data-copy="${escA(t)}">Copier</button></div>`;}
+function renderFonts(){const t=input.value||"TonPseudo";fontsEl.innerHTML=STYLES.map(s=>rowHTML(s[0],styleText(t,s[1],s[2]))).join("");}
+function renderDeco(){const t=input.value||"TonPseudo";decoEl.innerHTML=DECOS.map((f,i)=>rowHTML("Déco "+(i+1),f(t))).join("");}
+function renderRandom(){$("randomList").innerHTML=Array.from({length:6},randomPseudo).map(p=>rowHTML("Idée",p)).join("");}
+input.addEventListener("input",()=>{renderFonts();renderDeco();});
+document.querySelectorAll(".tab").forEach(tab=>tab.addEventListener("click",()=>{
+ document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+ document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+ tab.classList.add("active");$(tab.dataset.panel).classList.add("active");}));
+$("rollBtn").addEventListener("click",renderRandom);
+document.body.addEventListener("click",e=>{const b=e.target.closest(".copy");if(!b)return;
+ copy(b.getAttribute("data-copy"));b.classList.add("done");b.textContent="✓";
+ setTimeout(()=>{b.classList.remove("done");b.textContent="Copier";},1200);});
+function copy(t){if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(toast).catch(()=>fb(t));else fb(t);}
+function fb(t){const ta=document.createElement("textarea");ta.value=t;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();try{document.execCommand("copy");}catch(_){}ta.remove();toast();}
+let tt;function toast(){const t=$("toast");t.classList.add("show");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("show"),1300);}
+renderFonts();renderDeco();renderRandom();
+</script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roue de Tirage au Sort 🎡 Roue aléatoire en ligne gratuite</title>
+<meta name="description" content="Fais tourner une roue de la chance pour tirer un nom au hasard. Ajoute tes noms, lance la roue, désigne un gagnant. Gratuit, sans inscription.">
+<meta name="theme-color" content="#0b0b14">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎡</text></svg>">
+<!-- PUB AdSense : <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXX" crossorigin="anonymous"></script> -->
+<style>
+  :root{--bg:#0b0b14;--card:#181826;--card2:#1f1f30;--txt:#eef0ff;--muted:#9aa0bd;--line:#2a2a40;--accent:#ec4899;--accent2:#a855f7}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,Roboto,sans-serif;color:var(--txt);min-height:100vh;line-height:1.5;padding-bottom:50px;
+       background:radial-gradient(1200px 600px at 20% -10%,#33103a 0,transparent 60%),radial-gradient(900px 500px at 110% 10%,#2a1140 0,transparent 55%),var(--bg)}
+  .wrap{max-width:720px;margin:0 auto;padding:0 16px}
+  .back{display:inline-block;margin:18px 0 0;color:var(--muted);text-decoration:none;font-size:14px}.back:hover{color:var(--txt)}
+  header{text-align:center;padding:24px 16px}
+  h1{font-size:clamp(24px,5.5vw,38px);font-weight:800;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  header p{color:var(--muted);margin-top:10px;font-size:15px}
+  .ad{margin:22px auto;min-height:90px;border:1px dashed var(--line);border-radius:12px;display:flex;align-items:center;justify-content:center;color:#454a66;font-size:12px}
+  .layout{display:flex;gap:22px;flex-wrap:wrap;align-items:flex-start;justify-content:center}
+  .wheel-box{position:relative;width:320px;max-width:90vw}
+  canvas{width:100%;height:auto;display:block}
+  .pointer{position:absolute;top:-6px;left:50%;transform:translateX(-50%);font-size:34px;z-index:2;filter:drop-shadow(0 2px 3px rgba(0,0,0,.5))}
+  .side{flex:1;min-width:260px}
+  textarea{width:100%;height:180px;font-size:15px;padding:14px;border-radius:12px;background:var(--card);border:2px solid var(--line);color:var(--txt);outline:none;resize:vertical;line-height:1.7}
+  textarea:focus{border-color:var(--accent)}
+  .opt{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:14px;color:var(--muted);cursor:pointer}
+  .spin{display:block;width:100%;margin-top:14px;padding:16px;border:none;cursor:pointer;border-radius:14px;font-size:17px;font-weight:800;color:#fff;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:.1s}
+  .spin:hover{filter:brightness(1.08)}.spin:active{transform:scale(.99)}.spin:disabled{opacity:.5;cursor:default}
+  .result{text-align:center;margin:24px auto 0;font-size:26px;font-weight:800;min-height:34px;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .seo{margin-top:36px;color:var(--muted);font-size:14.5px}.seo h2{color:var(--txt);font-size:18px;margin:22px 0 8px}
+  .tools{margin-top:44px}.tools h2{font-size:15px;color:var(--muted);text-align:center;margin-bottom:14px;font-weight:600}
+  .tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+  .tgrid a{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px;color:var(--txt);text-decoration:none;font-weight:600;font-size:13.5px;transition:.15s}
+  .tgrid a:hover{border-color:var(--accent);background:var(--card2)}
+  footer{text-align:center;color:#4a4f6b;font-size:13px;margin-top:30px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← Tous les outils</a>
+  <header>
+    <h1>🎡 Roue de tirage au sort</h1>
+    <p>Ajoute des noms, fais tourner la roue, désigne un gagnant au hasard.</p>
+  </header>
+
+  <div class="layout">
+    <div class="wheel-box">
+      <div class="pointer">🔻</div>
+      <canvas id="wheel" width="640" height="640"></canvas>
+    </div>
+    <div class="side">
+      <textarea id="entries" spellcheck="false" placeholder="Un nom par ligne…"></textarea>
+      <label class="opt"><input type="checkbox" id="removeWin"> Retirer le gagnant après le tirage</label>
+      <button class="spin" id="spinBtn">🎯 Faire tourner</button>
+    </div>
+  </div>
+  <div class="result" id="result"></div>
+
+  <div class="ad">Emplacement pub (bannière)</div>
+
+  <section class="seo">
+    <h2>Une roue de la chance simple et gratuite</h2>
+    <p>Pour désigner un gagnant, choisir qui commence, faire un tirage au sort en classe ou en soirée : écris la liste,
+    clique sur «&nbsp;Faire tourner&nbsp;» et laisse le hasard décider. Tu peux retirer automatiquement le nom gagnant
+    pour enchaîner plusieurs tirages sans doublon.</p>
+  </section>
+
+  <nav class="tools">
+    <h2>⚡ Plus d'outils gratuits</h2>
+    <div class="tgrid">
+      <a href="../pseudos/">🔤 Pseudos stylés</a><a href="../robux/">💰 Robux en €</a>
+      <a href="../minuteur/">⏱️ Minuteur</a><a href="../mot-de-passe/">🔒 Mot de passe</a>
+      <a href="../pourcentage/">🧮 Pourcentage</a><a href="../compteur-mots/">📝 Compteur de mots</a>
+      <a href="../bio/">✨ Bio stylée</a><a href="../noms/">🎮 Générateur de noms</a>
+      <a href="../pile-ou-face/">🪙 Pile ou face &amp; dé</a>
+    </div>
+  </nav>
+  <footer>Fait avec ⚡ — 100% gratuit, aucune inscription.</footer>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const cv=$("wheel"),ctx=cv.getContext("2d"),R=cv.width/2;
+const COLORS=["#ec4899","#a855f7","#8b5cf6","#6366f1","#3b82f6","#06b6d4","#10b981","#f59e0b","#ef4444","#f43f5e"];
+let items=[],rot=0,spinning=false;
+$("entries").value="Alice\nBob\nChloé\nDavid\nEmma\nLucas";
+function getItems(){return $("entries").value.split("\n").map(s=>s.trim()).filter(Boolean);}
+function draw(){
+  items=getItems();
+  ctx.clearRect(0,0,cv.width,cv.height);
+  const n=items.length;
+  if(n===0){ctx.fillStyle="#1f1f30";ctx.beginPath();ctx.arc(R,R,R-4,0,7);ctx.fill();
+    ctx.fillStyle="#9aa0bd";ctx.font="26px Segoe UI";ctx.textAlign="center";ctx.fillText("Ajoute des noms",R,R);return;}
+  const seg=2*Math.PI/n;
+  ctx.save();ctx.translate(R,R);ctx.rotate(rot);
+  for(let i=0;i<n;i++){
+    const a0=i*seg,a1=a0+seg;
+    ctx.beginPath();ctx.moveTo(0,0);ctx.arc(0,0,R-6,a0,a1);ctx.closePath();
+    ctx.fillStyle=COLORS[i%COLORS.length];ctx.fill();
+    ctx.save();ctx.rotate(a0+seg/2);ctx.textAlign="right";ctx.fillStyle="#fff";
+    ctx.font="bold "+Math.max(16,Math.min(30,360/n))+"px Segoe UI";
+    let label=items[i];if(label.length>14)label=label.slice(0,13)+"…";
+    ctx.fillText(label,R-26,8);ctx.restore();
+  }
+  ctx.restore();
+  // moyeu central
+  ctx.beginPath();ctx.arc(R,R,34,0,7);ctx.fillStyle="#181826";ctx.fill();
+  ctx.lineWidth=4;ctx.strokeStyle="#2a2a40";ctx.stroke();
+}
+function spin(){
+  const n=getItems().length;
+  if(spinning||n<2){if(n<2)$("result").textContent="Ajoute au moins 2 noms";return;}
+  spinning=true;$("spinBtn").disabled=true;$("result").textContent="";
+  const seg=2*Math.PI/n;
+  const target=Math.floor(Math.random()*n);
+  // angle final pour que le segment 'target' soit sous le pointeur (haut = -PI/2)
+  const pointer=-Math.PI/2;
+  const center=target*seg+seg/2;
+  const turns=5+Math.floor(Math.random()*3);
+  const finalRot=turns*2*Math.PI + (pointer - center) - (rot % (2*Math.PI));
+  const start=rot,dur=4200,t0=performance.now();
+  (function anim(now){
+    const p=Math.min((now-t0)/dur,1);
+    const e=1-Math.pow(1-p,3); // easeOutCubic
+    rot=start+finalRot*e;draw();
+    if(p<1)requestAnimationFrame(anim);
+    else{spinning=false;$("spinBtn").disabled=false;
+      const win=getItems()[target];
+      $("result").textContent="🏆 "+win;
+      if($("removeWin").checked){
+        const arr=getItems();arr.splice(target,1);$("entries").value=arr.join("\n");draw();
+      }
+    }
+  })(t0);
+}
+$("entries").addEventListener("input",()=>{if(!spinning)draw();});
+$("spinBtn").addEventListener("click",spin);
+draw();
+</script>
+</body>
+</html>

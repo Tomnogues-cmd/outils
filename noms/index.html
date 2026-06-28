@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Générateur de Noms 🎮 Team, guilde, perso, clan (gratuit)</title>
+<meta name="description" content="Génère des noms cools pour ta team, ta guilde, ton personnage de jeu ou ton serveur Discord. Idées en 1 clic, copie-colle direct. Gratuit, sans inscription.">
+<meta name="theme-color" content="#0b0b14">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+<!-- PUB AdSense : <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXX" crossorigin="anonymous"></script> -->
+<style>
+  :root{--bg:#0b0b14;--card:#181826;--card2:#1f1f30;--txt:#eef0ff;--muted:#9aa0bd;--line:#2a2a40;--accent:#34d399;--accent2:#8b5cf6;--good:#34d399}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,Roboto,sans-serif;color:var(--txt);min-height:100vh;line-height:1.5;padding-bottom:50px;
+       background:radial-gradient(1200px 600px at 20% -10%,#0a2a1f 0,transparent 60%),radial-gradient(900px 500px at 110% 10%,#1c1740 0,transparent 55%),var(--bg)}
+  .wrap{max-width:680px;margin:0 auto;padding:0 16px}
+  .back{display:inline-block;margin:18px 0 0;color:var(--muted);text-decoration:none;font-size:14px}.back:hover{color:var(--txt)}
+  header{text-align:center;padding:24px 16px}
+  h1{font-size:clamp(24px,5.5vw,38px);font-weight:800;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  header p{color:var(--muted);margin-top:10px;font-size:15px}
+  .ad{margin:22px auto;min-height:90px;border:1px dashed var(--line);border-radius:12px;display:flex;align-items:center;justify-content:center;color:#454a66;font-size:12px}
+  .cats{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:16px}
+  .cat{padding:10px 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--muted);cursor:pointer;font-size:14px;font-weight:600;transition:.15s}
+  .cat:hover{color:var(--txt);border-color:var(--accent)}.cat.active{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#04201a;border-color:transparent}
+  .gen{display:block;width:100%;margin-bottom:14px;padding:16px;border:none;cursor:pointer;border-radius:14px;font-size:16px;font-weight:800;color:#04201a;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:.1s}
+  .gen:hover{filter:brightness(1.08)}.gen:active{transform:scale(.99)}
+  .row{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:10px;transition:.15s}
+  .row:hover{border-color:var(--accent);background:var(--card2)}
+  .row .out{flex:1;font-size:19px;font-weight:600;word-break:break-word;min-width:0}
+  .copy{flex-shrink:0;cursor:pointer;border-radius:10px;padding:9px 14px;font-weight:700;font-size:13px;background:var(--card2);color:var(--txt);border:1px solid var(--line);transition:.15s}
+  .copy:hover{background:var(--accent);border-color:var(--accent);color:#04201a}.copy.done{background:var(--good);border-color:var(--good);color:#04201a}
+  .seo{margin-top:36px;color:var(--muted);font-size:14.5px}.seo h2{color:var(--txt);font-size:18px;margin:22px 0 8px}
+  .tools{margin-top:44px}.tools h2{font-size:15px;color:var(--muted);text-align:center;margin-bottom:14px;font-weight:600}
+  .tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+  .tgrid a{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px;color:var(--txt);text-decoration:none;font-weight:600;font-size:13.5px;transition:.15s}
+  .tgrid a:hover{border-color:var(--accent);background:var(--card2)}
+  footer{text-align:center;color:#4a4f6b;font-size:13px;margin-top:30px}
+  #toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:var(--good);color:#04201a;font-weight:800;padding:12px 22px;border-radius:12px;opacity:0;pointer-events:none;transition:.25s;z-index:50}
+  #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← Tous les outils</a>
+  <header>
+    <h1>🎮 Générateur de noms</h1>
+    <p>Des idées de noms pour ta team, ta guilde, ton perso ou ton serveur.</p>
+  </header>
+
+  <div class="cats" id="cats"></div>
+  <button class="gen" id="genBtn">🎲 Générer des noms</button>
+  <div id="list"></div>
+
+  <div class="ad">Emplacement pub (bannière)</div>
+
+  <section class="seo">
+    <h2>Trouver un nom cool en 1 clic</h2>
+    <p>Choisis une catégorie — <strong>team / clan</strong>, <strong>guilde fantasy</strong>, <strong>personnage</strong> ou
+    <strong>serveur Discord</strong> — puis clique sur «&nbsp;Générer&nbsp;». Tu obtiens une liste d'idées originales que tu
+    peux copier en un clic. Régénère autant de fois que tu veux jusqu'à trouver le nom parfait.</p>
+  </section>
+
+  <nav class="tools">
+    <h2>⚡ Plus d'outils gratuits</h2>
+    <div class="tgrid">
+      <a href="../pseudos/">🔤 Pseudos stylés</a><a href="../robux/">💰 Robux en €</a>
+      <a href="../roue/">🎡 Roue tirage au sort</a><a href="../minuteur/">⏱️ Minuteur</a>
+      <a href="../mot-de-passe/">🔒 Mot de passe</a><a href="../pourcentage/">🧮 Pourcentage</a>
+      <a href="../compteur-mots/">📝 Compteur de mots</a><a href="../bio/">✨ Bio stylée</a>
+      <a href="../pile-ou-face/">🪙 Pile ou face &amp; dé</a>
+    </div>
+  </nav>
+  <footer>Fait avec ⚡ — 100% gratuit, aucune inscription.</footer>
+</div>
+<div id="toast">Copié !</div>
+
+<script>
+const $=id=>document.getElementById(id),pick=r=>r[Math.floor(Math.random()*r.length)];
+const D={
+  team:{adj:["Toxic","Royal","Savage","Elite","Dark","Frozen","Crimson","Phantom","Rapid","Iron","Wild","Cyber","Furious","Shadow","Venom"],
+        nom:["Wolves","Dragons","Vipers","Reapers","Kings","Titans","Snipers","Legends","Hunters","Ravens","Demons","Knights","Storm","Squad","Empire"],
+        fn:d=>pick(d.adj)+" "+pick(d.nom)},
+  guilde:{a:["Les","La","L'Ordre des","Le Clan","La Confrérie des","Les Gardiens du"],
+          b:["Chevaliers","Loups","Dragons","Ombres","Flammes","Cendres","Lames","Corbeaux","Sentinelles","Damnés","Anciens","Foudres"],
+          c:["d'Argent","Éternels","du Nord","de Sang","Maudits","de l'Aube","des Abysses","Sacrés","du Néant","Immortels"],
+          fn:d=>pick(d.a)+" "+pick(d.b)+" "+pick(d.c)},
+  perso:{p:["Aze","Kor","Vael","Dra","Zyl","Mor","Thar","Eld","Nyx","Syl","Gor","Fen"],
+         s:["ric","goth","wyn","dor","ax","reth","mir","oss","ael","var","ius","oth"],
+         t:["le Sombre","l'Ardent","Sang-de-Loup","aux Yeux d'Or","le Maudit","Brise-Lames","l'Immortel","de la Nuit",""],
+         fn:d=>{let n=pick(d.p)+pick(d.s);return Math.random()<.5?n+" "+pick(d.t):n;}},
+  discord:{e:["🎮","🔥","⚡","🌙","👾","🎲","🏰","🚀"],
+           a:["The","Le","La","Cozy","Chill","Pixel","Neon","Hyper","Mega","Ultra"],
+           b:["Hub","Lounge","Zone","Café","World","Land","Crew","Squad","Galaxy","Arena","Station","Nest"],
+           fn:d=>pick(d.e)+" "+pick(d.a)+" "+pick(d.b)}
+};
+let cat="team";
+const labels={team:"⚔️ Team / Clan",guilde:"🏰 Guilde fantasy",perso:"🧙 Personnage",discord:"💬 Serveur Discord"};
+const catsEl=$("cats");
+Object.keys(labels).forEach((k,i)=>{
+  const b=document.createElement("button");b.className="cat"+(i===0?" active":"");b.textContent=labels[k];
+  b.addEventListener("click",()=>{cat=k;document.querySelectorAll(".cat").forEach(x=>x.classList.remove("active"));b.classList.add("active");gen();});
+  catsEl.appendChild(b);
+});
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function escA(s){return s.replace(/&/g,"&amp;").replace(/"/g,"&quot;");}
+function gen(){
+  const d=D[cat];const set=new Set();
+  let tries=0;while(set.size<8&&tries<60){set.add(d.fn(d));tries++;}
+  $("list").innerHTML=[...set].map(n=>`<div class="row"><span class="out">${esc(n)}</span><button class="copy" data-copy="${escA(n)}">Copier</button></div>`).join("");
+}
+$("genBtn").addEventListener("click",gen);
+document.body.addEventListener("click",e=>{const b=e.target.closest(".copy");if(!b)return;
+  const t=b.getAttribute("data-copy");
+  (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(toast).catch(()=>{
+    const ta=document.createElement("textarea");ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand("copy");}catch(_){}ta.remove();toast();});
+  b.classList.add("done");b.textContent="✓";setTimeout(()=>{b.classList.remove("done");b.textContent="Copier";},1200);});
+let tt;function toast(){const t=$("toast");t.classList.add("show");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("show"),1300);}
+gen();
+</script>
+</body>
+</html>

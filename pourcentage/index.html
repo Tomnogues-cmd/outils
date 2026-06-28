@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calcul de Pourcentage 🧮 Calculateur de % en ligne gratuit</title>
+<meta name="description" content="Calcule un pourcentage facilement : X% d'un nombre, proportion, hausse ou baisse en %. Calculateur en ligne gratuit, résultat instantané, sans inscription.">
+<meta name="theme-color" content="#0b0b14">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧮</text></svg>">
+<!-- PUB AdSense : <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXX" crossorigin="anonymous"></script> -->
+<style>
+  :root{--bg:#0b0b14;--card:#181826;--card2:#1f1f30;--txt:#eef0ff;--muted:#9aa0bd;--line:#2a2a40;--accent:#6366f1;--accent2:#22d3ee}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,Roboto,sans-serif;color:var(--txt);min-height:100vh;line-height:1.5;padding-bottom:50px;
+       background:radial-gradient(1200px 600px at 20% -10%,#16143a 0,transparent 60%),radial-gradient(900px 500px at 110% 10%,#0a2a33 0,transparent 55%),var(--bg)}
+  .wrap{max-width:620px;margin:0 auto;padding:0 16px}
+  .back{display:inline-block;margin:18px 0 0;color:var(--muted);text-decoration:none;font-size:14px}.back:hover{color:var(--txt)}
+  header{text-align:center;padding:24px 16px}
+  h1{font-size:clamp(24px,5.5vw,38px);font-weight:800;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  header p{color:var(--muted);margin-top:10px;font-size:15px}
+  .ad{margin:22px auto;min-height:90px;border:1px dashed var(--line);border-radius:12px;display:flex;align-items:center;justify-content:center;color:#454a66;font-size:12px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:14px}
+  .q{font-size:16px;margin-bottom:14px;display:flex;align-items:center;flex-wrap:wrap;gap:8px;line-height:2.2}
+  .q input{width:90px;font-size:18px;padding:8px 10px;border-radius:10px;background:var(--card2);border:2px solid var(--line);color:var(--txt);outline:none;text-align:center}
+  .q input:focus{border-color:var(--accent)}
+  .res{font-size:22px;font-weight:800;margin-top:6px;color:transparent;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text}
+  .seo{margin-top:36px;color:var(--muted);font-size:14.5px}.seo h2{color:var(--txt);font-size:18px;margin:22px 0 8px}
+  .tools{margin-top:44px}.tools h2{font-size:15px;color:var(--muted);text-align:center;margin-bottom:14px;font-weight:600}
+  .tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+  .tgrid a{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px;color:var(--txt);text-decoration:none;font-weight:600;font-size:13.5px;transition:.15s}
+  .tgrid a:hover{border-color:var(--accent);background:var(--card2)}
+  footer{text-align:center;color:#4a4f6b;font-size:13px;margin-top:30px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← Tous les outils</a>
+  <header>
+    <h1>🧮 Calcul de pourcentage</h1>
+    <p>Les 3 calculs de % les plus utiles, résultat en direct.</p>
+  </header>
+
+  <div class="card">
+    <div class="q">Combien font <input id="a1" type="number" value="20"> % de <input id="a2" type="number" value="80"> ?</div>
+    <div class="res" id="r1"></div>
+  </div>
+
+  <div class="card">
+    <div class="q"><input id="b1" type="number" value="30"> représente quel % de <input id="b2" type="number" value="120"> ?</div>
+    <div class="res" id="r2"></div>
+  </div>
+
+  <div class="card">
+    <div class="q">Évolution de <input id="c1" type="number" value="50"> à <input id="c2" type="number" value="65"> :</div>
+    <div class="res" id="r3"></div>
+  </div>
+
+  <div class="ad">Emplacement pub (bannière)</div>
+
+  <section class="seo">
+    <h2>Comment calculer un pourcentage&nbsp;?</h2>
+    <p><strong>X % d'un nombre</strong> : multiplie le nombre par X puis divise par 100 (ex. 20&nbsp;% de 80 = 80×20/100 = 16).<br>
+    <strong>Proportion</strong> : pour savoir quel % une valeur représente, divise-la par le total puis multiplie par 100.<br>
+    <strong>Variation</strong> : (valeur d'arrivée − valeur de départ) ÷ valeur de départ × 100, pour une hausse (+) ou une baisse (−).</p>
+  </section>
+
+  <nav class="tools">
+    <h2>⚡ Plus d'outils gratuits</h2>
+    <div class="tgrid">
+      <a href="../pseudos/">🔤 Pseudos stylés</a><a href="../robux/">💰 Robux en €</a>
+      <a href="../roue/">🎡 Roue tirage au sort</a><a href="../minuteur/">⏱️ Minuteur</a>
+      <a href="../mot-de-passe/">🔒 Mot de passe</a><a href="../compteur-mots/">📝 Compteur de mots</a>
+      <a href="../bio/">✨ Bio stylée</a><a href="../noms/">🎮 Générateur de noms</a>
+      <a href="../pile-ou-face/">🪙 Pile ou face &amp; dé</a>
+    </div>
+  </nav>
+  <footer>Fait avec ⚡ — 100% gratuit, aucune inscription.</footer>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const num=id=>parseFloat($(id).value);
+const fmt=n=>Number.isFinite(n)?(Math.round(n*1000)/1000).toLocaleString('fr-FR'):"—";
+function calc(){
+  const a1=num("a1"),a2=num("a2");
+  $("r1").textContent = (isNaN(a1)||isNaN(a2))?"" : "= "+fmt(a1/100*a2);
+  const b1=num("b1"),b2=num("b2");
+  $("r2").textContent = (isNaN(b1)||isNaN(b2))?"" : (b2===0?"impossible (÷0)":"= "+fmt(b1/b2*100)+" %");
+  const c1=num("c1"),c2=num("c2");
+  if(isNaN(c1)||isNaN(c2))$("r3").textContent="";
+  else if(c1===0)$("r3").textContent="impossible (départ = 0)";
+  else{const v=(c2-c1)/Math.abs(c1)*100;$("r3").textContent=(v>=0?"+ ":"− ")+fmt(Math.abs(v))+" %"+(v>=0?" (hausse)":" (baisse)");}
+}
+document.querySelectorAll("input").forEach(i=>i.addEventListener("input",calc));
+calc();
+</script>
+</body>
+</html>

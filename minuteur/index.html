@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minuteur en ligne ⏱️ Compte à rebours gratuit avec alarme</title>
+<meta name="description" content="Minuteur et compte à rebours en ligne, gratuit. Règle les minutes, lance le timer, une alarme sonne à la fin. Idéal cuisine, sport, révisions, jeux.">
+<meta name="theme-color" content="#0b0b14">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⏱️</text></svg>">
+<!-- PUB AdSense : <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXX" crossorigin="anonymous"></script> -->
+<style>
+  :root{--bg:#0b0b14;--card:#181826;--card2:#1f1f30;--txt:#eef0ff;--muted:#9aa0bd;--line:#2a2a40;--accent:#22d3ee;--accent2:#3b82f6}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,Roboto,sans-serif;color:var(--txt);min-height:100vh;line-height:1.5;padding-bottom:50px;
+       background:radial-gradient(1200px 600px at 20% -10%,#0a2a33 0,transparent 60%),radial-gradient(900px 500px at 110% 10%,#10204a 0,transparent 55%),var(--bg)}
+  .wrap{max-width:600px;margin:0 auto;padding:0 16px}
+  .back{display:inline-block;margin:18px 0 0;color:var(--muted);text-decoration:none;font-size:14px}.back:hover{color:var(--txt)}
+  header{text-align:center;padding:24px 16px}
+  h1{font-size:clamp(24px,5.5vw,38px);font-weight:800;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  header p{color:var(--muted);margin-top:10px;font-size:15px}
+  .ad{margin:22px auto;min-height:90px;border:1px dashed var(--line);border-radius:12px;display:flex;align-items:center;justify-content:center;color:#454a66;font-size:12px}
+  .display{font-size:clamp(56px,18vw,110px);font-weight:800;text-align:center;font-variant-numeric:tabular-nums;letter-spacing:2px;margin:14px 0;transition:color .2s}
+  .display.done{animation:blink 1s steps(2,start) infinite;color:var(--accent)}
+  @keyframes blink{50%{opacity:.25}}
+  .inputs{display:flex;gap:8px;justify-content:center;align-items:center;font-size:24px}
+  .inputs input{width:80px;font-size:30px;text-align:center;padding:12px 6px;border-radius:12px;background:var(--card);border:2px solid var(--line);color:var(--txt);outline:none}
+  .inputs input:focus{border-color:var(--accent)}
+  .inputs span{color:var(--muted);font-size:14px}
+  .presets{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:18px 0}
+  .preset{padding:9px 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--txt);cursor:pointer;font-size:14px;font-weight:600;transition:.15s}
+  .preset:hover{border-color:var(--accent);background:var(--card2)}
+  .ctrls{display:flex;gap:10px;justify-content:center;margin-top:10px}
+  .btn{padding:15px 28px;border:none;cursor:pointer;border-radius:14px;font-size:16px;font-weight:800;color:#fff;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:.1s}
+  .btn:hover{filter:brightness(1.08)}.btn:active{transform:scale(.98)}
+  .btn.ghost{background:var(--card);color:var(--txt);border:1px solid var(--line)}
+  .seo{margin-top:36px;color:var(--muted);font-size:14.5px}.seo h2{color:var(--txt);font-size:18px;margin:22px 0 8px}
+  .tools{margin-top:44px}.tools h2{font-size:15px;color:var(--muted);text-align:center;margin-bottom:14px;font-weight:600}
+  .tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+  .tgrid a{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px;color:var(--txt);text-decoration:none;font-weight:600;font-size:13.5px;transition:.15s}
+  .tgrid a:hover{border-color:var(--accent);background:var(--card2)}
+  footer{text-align:center;color:#4a4f6b;font-size:13px;margin-top:30px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← Tous les outils</a>
+  <header>
+    <h1>⏱️ Minuteur en ligne</h1>
+    <p>Règle le temps, lance, une alarme sonne à la fin.</p>
+  </header>
+
+  <div class="display" id="display">05:00</div>
+
+  <div class="inputs" id="setup">
+    <div><input id="h" type="number" min="0" max="99" value="0"><div><span>heures</span></div></div>
+    <div><input id="m" type="number" min="0" max="59" value="5"><div><span>minutes</span></div></div>
+    <div><input id="s" type="number" min="0" max="59" value="0"><div><span>secondes</span></div></div>
+  </div>
+
+  <div class="presets">
+    <button class="preset" data-min="1">1 min</button>
+    <button class="preset" data-min="3">3 min</button>
+    <button class="preset" data-min="5">5 min</button>
+    <button class="preset" data-min="10">10 min</button>
+    <button class="preset" data-min="15">15 min</button>
+    <button class="preset" data-min="30">30 min</button>
+  </div>
+
+  <div class="ctrls">
+    <button class="btn" id="startBtn">▶ Démarrer</button>
+    <button class="btn ghost" id="resetBtn">↺ Réinitialiser</button>
+  </div>
+
+  <div class="ad">Emplacement pub (bannière)</div>
+
+  <section class="seo">
+    <h2>Un compte à rebours pour tout</h2>
+    <p>Ce minuteur en ligne fonctionne directement dans ton navigateur, sans installation. Pratique pour la cuisine,
+    le sport (séries, repos), les révisions (méthode Pomodoro), les jeux ou un brossage de dents. Règle les heures,
+    minutes et secondes, ou utilise un raccourci, puis clique sur «&nbsp;Démarrer&nbsp;».</p>
+  </section>
+
+  <nav class="tools">
+    <h2>⚡ Plus d'outils gratuits</h2>
+    <div class="tgrid">
+      <a href="../pseudos/">🔤 Pseudos stylés</a><a href="../robux/">💰 Robux en €</a>
+      <a href="../roue/">🎡 Roue tirage au sort</a><a href="../mot-de-passe/">🔒 Mot de passe</a>
+      <a href="../pourcentage/">🧮 Pourcentage</a><a href="../compteur-mots/">📝 Compteur de mots</a>
+      <a href="../bio/">✨ Bio stylée</a><a href="../noms/">🎮 Générateur de noms</a>
+      <a href="../pile-ou-face/">🪙 Pile ou face &amp; dé</a>
+    </div>
+  </nav>
+  <footer>Fait avec ⚡ — 100% gratuit, aucune inscription.</footer>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const disp=$("display"),setup=$("setup");
+let remaining=300,endTime=0,tick=null,running=false,started=false,audioCtx=null,alarm=null;
+function fmt(t){t=Math.max(0,Math.round(t));const h=Math.floor(t/3600),m=Math.floor(t%3600/60),s=t%60;
+  const p=n=>String(n).padStart(2,"0");return (h>0?p(h)+":":"")+p(m)+":"+p(s);}
+function readInputs(){return (+$("h").value||0)*3600+(+$("m").value||0)*60+(+$("s").value||0);}
+function render(){disp.textContent=fmt(remaining);}
+function start(){
+  if(running)return;
+  if(!started){remaining=readInputs();if(remaining<=0)return;started=true;}
+  stopAlarm();disp.classList.remove("done");
+  running=true;$("startBtn").textContent="⏸ Pause";setup.style.opacity=".4";
+  endTime=Date.now()+remaining*1000;
+  tick=setInterval(()=>{
+    remaining=(endTime-Date.now())/1000;
+    if(remaining<=0){remaining=0;render();finish();}else render();
+  },200);
+}
+function pause(){running=false;clearInterval(tick);tick=null;$("startBtn").textContent="▶ Reprendre";}
+function toggle(){running?pause():start();}
+function reset(){running=false;started=false;clearInterval(tick);tick=null;stopAlarm();
+  disp.classList.remove("done");setup.style.opacity="1";$("startBtn").textContent="▶ Démarrer";
+  remaining=readInputs();render();}
+function finish(){
+  clearInterval(tick);tick=null;running=false;started=false;$("startBtn").textContent="▶ Démarrer";
+  setup.style.opacity="1";disp.classList.add("done");beep();
+  if(navigator.vibrate)navigator.vibrate([300,150,300,150,300]);
+}
+function beep(){
+  try{audioCtx=audioCtx||new (window.AudioContext||window.webkitAudioContext)();
+    let count=0;
+    alarm=setInterval(()=>{
+      const o=audioCtx.createOscillator(),g=audioCtx.createGain();
+      o.connect(g);g.connect(audioCtx.destination);o.type="sine";o.frequency.value=880;
+      g.gain.setValueAtTime(.0001,audioCtx.currentTime);
+      g.gain.exponentialRampToValueAtTime(.4,audioCtx.currentTime+.02);
+      g.gain.exponentialRampToValueAtTime(.0001,audioCtx.currentTime+.4);
+      o.start();o.stop(audioCtx.currentTime+.42);
+      if(++count>=10)stopAlarm();
+    },600);
+  }catch(e){}
+}
+function stopAlarm(){if(alarm){clearInterval(alarm);alarm=null;}}
+$("startBtn").addEventListener("click",toggle);
+$("resetBtn").addEventListener("click",reset);
+document.querySelectorAll(".preset").forEach(b=>b.addEventListener("click",()=>{
+  reset();$("h").value=0;$("m").value=b.dataset.min;$("s").value=0;remaining=readInputs();render();
+}));
+["h","m","s"].forEach(id=>$(id).addEventListener("input",()=>{if(!started){remaining=readInputs();render();}}));
+render();
+</script>
+</body>
+</html>

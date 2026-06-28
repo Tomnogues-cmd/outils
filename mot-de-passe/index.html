@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Générateur de Mot de Passe 🔒 Sécurisé et gratuit</title>
+<meta name="description" content="Génère un mot de passe fort et aléatoire en 1 clic. Choisis la longueur, les majuscules, chiffres et symboles. 100% dans ton navigateur, rien n'est envoyé. Gratuit.">
+<meta name="theme-color" content="#0b0b14">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔒</text></svg>">
+<!-- PUB AdSense : <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXX" crossorigin="anonymous"></script> -->
+<style>
+  :root{--bg:#0b0b14;--card:#181826;--card2:#1f1f30;--txt:#eef0ff;--muted:#9aa0bd;--line:#2a2a40;--accent:#10b981;--accent2:#22d3ee;--good:#34d399}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,Roboto,sans-serif;color:var(--txt);min-height:100vh;line-height:1.5;padding-bottom:50px;
+       background:radial-gradient(1200px 600px at 20% -10%,#082a22 0,transparent 60%),radial-gradient(900px 500px at 110% 10%,#0a2a33 0,transparent 55%),var(--bg)}
+  .wrap{max-width:620px;margin:0 auto;padding:0 16px}
+  .back{display:inline-block;margin:18px 0 0;color:var(--muted);text-decoration:none;font-size:14px}.back:hover{color:var(--txt)}
+  header{text-align:center;padding:24px 16px}
+  h1{font-size:clamp(24px,5.5vw,38px);font-weight:800;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  header p{color:var(--muted);margin-top:10px;font-size:15px}
+  .ad{margin:22px auto;min-height:90px;border:1px dashed var(--line);border-radius:12px;display:flex;align-items:center;justify-content:center;color:#454a66;font-size:12px}
+  .out{display:flex;gap:10px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:6px}
+  #pwd{flex:1;font-size:22px;font-family:ui-monospace,Consolas,monospace;word-break:break-all;min-width:0}
+  .icon-btn{flex-shrink:0;cursor:pointer;border-radius:10px;padding:10px 13px;font-weight:700;font-size:16px;background:var(--card2);color:var(--txt);border:1px solid var(--line);transition:.15s}
+  .icon-btn:hover{background:var(--accent);border-color:var(--accent);color:#04201a}
+  .meter{height:8px;border-radius:6px;background:var(--card2);overflow:hidden;margin:14px 0 6px}
+  .meter>div{height:100%;width:0;transition:.3s}
+  .meterTxt{font-size:13px;color:var(--muted);text-align:right}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin:16px 0}
+  .lenrow{display:flex;align-items:center;gap:14px;margin-bottom:8px}
+  .lenrow b{font-size:20px;min-width:34px;text-align:center}
+  input[type=range]{flex:1;accent-color:var(--accent)}
+  .opt{display:flex;align-items:center;gap:10px;padding:10px 0;font-size:15px;cursor:pointer;border-top:1px solid var(--line)}
+  .opt input{width:18px;height:18px;accent-color:var(--accent)}
+  .gen{display:block;width:100%;margin-top:8px;padding:16px;border:none;cursor:pointer;border-radius:14px;font-size:16px;font-weight:800;color:#04201a;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:.1s}
+  .gen:hover{filter:brightness(1.08)}.gen:active{transform:scale(.99)}
+  .seo{margin-top:36px;color:var(--muted);font-size:14.5px}.seo h2{color:var(--txt);font-size:18px;margin:22px 0 8px}
+  .tools{margin-top:44px}.tools h2{font-size:15px;color:var(--muted);text-align:center;margin-bottom:14px;font-weight:600}
+  .tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+  .tgrid a{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px;color:var(--txt);text-decoration:none;font-weight:600;font-size:13.5px;transition:.15s}
+  .tgrid a:hover{border-color:var(--accent);background:var(--card2)}
+  footer{text-align:center;color:#4a4f6b;font-size:13px;margin-top:30px}
+  #toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:var(--good);color:#04201a;font-weight:800;padding:12px 22px;border-radius:12px;opacity:0;pointer-events:none;transition:.25s;z-index:50}
+  #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← Tous les outils</a>
+  <header>
+    <h1>🔒 Mot de passe sécurisé</h1>
+    <p>Généré au hasard dans ton navigateur. Rien n'est envoyé sur internet.</p>
+  </header>
+
+  <div class="out">
+    <span id="pwd">cliquez sur Générer</span>
+    <button class="icon-btn" id="copyBtn" title="Copier">📋</button>
+    <button class="icon-btn" id="reBtn" title="Régénérer">🔄</button>
+  </div>
+  <div class="meter"><div id="bar"></div></div>
+  <div class="meterTxt" id="strength"></div>
+
+  <div class="card">
+    <div class="lenrow"><span>Longueur</span><input id="len" type="range" min="6" max="40" value="16"><b id="lenVal">16</b></div>
+    <label class="opt"><input type="checkbox" id="up" checked> Majuscules (A-Z)</label>
+    <label class="opt"><input type="checkbox" id="low" checked> Minuscules (a-z)</label>
+    <label class="opt"><input type="checkbox" id="num" checked> Chiffres (0-9)</label>
+    <label class="opt"><input type="checkbox" id="sym" checked> Symboles (!@#$…)</label>
+    <label class="opt"><input type="checkbox" id="amb"> Éviter les caractères ambigus (l, 1, O, 0…)</label>
+  </div>
+  <button class="gen" id="genBtn">🎲 Générer un mot de passe</button>
+
+  <div class="ad">Emplacement pub (bannière)</div>
+
+  <section class="seo">
+    <h2>Pourquoi un mot de passe fort&nbsp;?</h2>
+    <p>Un bon mot de passe est long (au moins 12&nbsp;caractères) et mélange majuscules, minuscules, chiffres et symboles.
+    Ici, tout est généré <strong>localement, dans ton navigateur</strong> grâce au générateur aléatoire sécurisé de ton
+    appareil&nbsp;: aucun mot de passe n'est enregistré ni envoyé. Utilise un mot de passe différent par site, et un
+    gestionnaire de mots de passe pour les retenir.</p>
+  </section>
+
+  <nav class="tools">
+    <h2>⚡ Plus d'outils gratuits</h2>
+    <div class="tgrid">
+      <a href="../pseudos/">🔤 Pseudos stylés</a><a href="../robux/">💰 Robux en €</a>
+      <a href="../roue/">🎡 Roue tirage au sort</a><a href="../minuteur/">⏱️ Minuteur</a>
+      <a href="../pourcentage/">🧮 Pourcentage</a><a href="../compteur-mots/">📝 Compteur de mots</a>
+      <a href="../bio/">✨ Bio stylée</a><a href="../noms/">🎮 Générateur de noms</a>
+      <a href="../pile-ou-face/">🪙 Pile ou face &amp; dé</a>
+    </div>
+  </nav>
+  <footer>Fait avec ⚡ — 100% gratuit, aucune inscription.</footer>
+</div>
+<div id="toast">Copié !</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const SETS={up:"ABCDEFGHIJKLMNOPQRSTUVWXYZ",low:"abcdefghijklmnopqrstuvwxyz",num:"0123456789",sym:"!@#$%^&*()-_=+[]{};:,.?"};
+const AMB=/[l1IO0o]/g;
+function rand(max){const a=new Uint32Array(1);crypto.getRandomValues(a);return a[0]%max;}
+function generate(){
+  let pool="",required=[];
+  ["up","low","num","sym"].forEach(k=>{
+    if($(k).checked){let s=SETS[k];if($("amb").checked)s=s.replace(AMB,"");pool+=s;required.push(s);}
+  });
+  if(!pool){$("pwd").textContent="Coche au moins une option";update("");return;}
+  const len=+$("len").value;
+  let chars=[];
+  // garantir au moins 1 de chaque catégorie cochée
+  required.forEach(s=>{if(s)chars.push(s[rand(s.length)]);});
+  while(chars.length<len)chars.push(pool[rand(pool.length)]);
+  // mélange Fisher-Yates
+  for(let i=chars.length-1;i>0;i--){const j=rand(i+1);[chars[i],chars[j]]=[chars[j],chars[i]];}
+  const pwd=chars.slice(0,len).join("");
+  $("pwd").textContent=pwd;update(pwd);
+}
+function update(pwd){
+  const len=pwd.length;let pool=0;
+  if(/[A-Z]/.test(pwd))pool+=26;if(/[a-z]/.test(pwd))pool+=26;
+  if(/[0-9]/.test(pwd))pool+=10;if(/[^A-Za-z0-9]/.test(pwd))pool+=22;
+  const bits=len?len*Math.log2(pool||1):0;
+  const bar=$("bar"),txt=$("strength");
+  const pct=Math.min(100,bits/0.9);
+  bar.style.width=pct+"%";
+  let label,col;
+  if(!len){label="";col="transparent";}
+  else if(bits<40){label="Faible";col="#ef4444";}
+  else if(bits<60){label="Moyen";col="#f59e0b";}
+  else if(bits<90){label="Fort 💪";col="#34d399";}
+  else{label="Très fort 🛡️";col="#22d3ee";}
+  bar.style.background=col;txt.textContent=label?label+" · "+Math.round(bits)+" bits":"";
+}
+$("len").addEventListener("input",()=>{$("lenVal").textContent=$("len").value;generate();});
+["up","low","num","sym","amb"].forEach(id=>$(id).addEventListener("change",generate));
+$("genBtn").addEventListener("click",generate);
+$("reBtn").addEventListener("click",generate);
+$("copyBtn").addEventListener("click",()=>{
+  const t=$("pwd").textContent;if(!t||t.includes("cliquez")||t.includes("Coche"))return;
+  (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(toast).catch(()=>{
+    const ta=document.createElement("textarea");ta.value=t;document.body.appendChild(ta);ta.select();
+    try{document.execCommand("copy");}catch(_){}ta.remove();toast();});
+});
+let tt;function toast(){const t=$("toast");t.classList.add("show");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("show"),1300);}
+generate();
+</script>
+</body>
+</html>
