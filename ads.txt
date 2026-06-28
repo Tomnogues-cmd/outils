@@ -1,0 +1,4 @@
+# ⚠️ Remplace pub-0000000000000000 par TON identifiant éditeur AdSense
+# (tu le trouves dans AdSense > Compte > Informations sur le compte, format pub-XXXXXXXXXXXXXXXX)
+# Ce fichier prouve à Google que c'est bien toi qui vends la pub sur ce site. Obligatoire pour être payé.
+google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
