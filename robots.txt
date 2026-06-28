@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://TON-DOMAINE/sitemap.xml
+Sitemap: https://tomnogues-cmd.github.io/outils/sitemap.xml
